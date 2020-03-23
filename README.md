@@ -4,26 +4,24 @@ Pytorch implementation of the Yolact network proposed in [Yolact:《YOLACT: Real
 Original project is [here](https://github.com/dbolya/yolact).   
 Minimal project is [here](https://github.com/feiyuhuahuo/Yolact_minimal).
 
-This implementation is a simplified version of original project, made the network easy to understand.
+This implementation is a simplified version of original project, made the network easy to understand.    
 (Referenced the minimal project)
 
 The model is based on resnet-101.
-### Network Architecture.
+### Network Architecture.       
 ![Yolact](https://user-images.githubusercontent.com/45263010/77279640-9200a000-6d05-11ea-93fc-adbe405517a4.png)
 
 ## Environments
 Google Colab
 
-(If you use other editors, you should satify following requirements.)
-
-PyTorch >= 1.1.
-Python >= 3.6.
+(If you use other editors, you should satify following requirements.)    
+PyTorch >= 1.1.  
+Python >= 3.6.  
 Other common packages.
 
 
 ## Usage
-This code implements only the main functions to understand the Original project and visually check the main functions' results. 
-
+This code implements only the main functions to understand the Original project and visually check the main functions' results.     
 For training and evaluation, please refer to the Original or Minimal project with performing the following steps.
 
 ## Dataset
@@ -70,7 +68,7 @@ python train.py --config=res101_coco_config --val_interval 20000
 python eval.py --trained_model=res101_coco_800000.pth
 ```
 The results should be:
-![Example 1](data/mAP.png)
+![example1](https://user-images.githubusercontent.com/45263010/77282118-66cd7f00-6d0c-11ea-8bd3-1ab2ed998d04.png)
 
 ```Shell
 # Evaluate with a specified number of images.
@@ -79,7 +77,7 @@ python eval.py --trained_model=res101_coco_800000.pth --max_num=1000
 python eval.py --trained_model=res101_coco_800000.pth --cocoapi
 ```
 ## Detect
-![Example 2](data/2.jpg)
+![example2](https://user-images.githubusercontent.com/45263010/77282121-67feac00-6d0c-11ea-86c2-b17f863b425e.jpg)
 ```Shell
 # To detect images, put your images to the 'images' folder, then:
 python detect.py --trained_model=res101_coco_800000.pth --image images
@@ -113,17 +111,17 @@ python eval.py --trained_model=res50_pascal_120000.pth
 pip install labelme
 ```
 - Use labelme to label your images, only ploygons are needed. Note that different objects belong to one class need to be distinguished by '-1', '-2', ... The created json files are in the same folder with the images, leave them alone.  
-![Example 3](data/labelme2.png)
+![example3](https://user-images.githubusercontent.com/45263010/77282124-692fd900-6d0c-11ea-9053-6790b25a20e0.png)
 - Prepare a 'labels.txt' like this, note that row1 and row2 are also required.  
-![Example 4](data/labels.png)
+![example4](https://user-images.githubusercontent.com/45263010/77282295-de031300-6d0c-11ea-841b-58fd932f6acb.png)
 - Prepare coco-style json.
 ```Shell
 python utils/labelme2coco.py your-image-and-labelme-json-path your-expected-output-folder --labels the-path-of-labels.txt
 ```
 - Edit `CUSTOM_CLASSES` and `CUSTOM_LABEL_MAP` in `data/config.py`.  
-![Example 5](data/label_name.png) 
+![example5](https://user-images.githubusercontent.com/45263010/77282129-6b923300-6d0c-11ea-9d92-79973ab5c2c1.png)
 Note that if there's only one class, the `CUSTOM_CLASSES` should be like `('plane', )`. The final comma is necessary to make it as a tuple, or the number of classes would be `len('plane')`.
-![Example 6](data/label_map.png)
+![example6](https://user-images.githubusercontent.com/45263010/77282136-6e8d2380-6d0c-11ea-86ef-86ce6833a718.png)
 - Edit `custom_dataset` in `data/config.py`, modify the path as your output folder. If you need to validate, prepare the validation dataset by the same way.  
 - Then train, since that the custom dataset is different from coco2017, you might tune the learning rate and learning rate decay by yourself.  
 ```Shell
