@@ -15,6 +15,7 @@ The model is based on resnet-101.
 Google Colab
 
 If you use other environments that are not web based like Pycharm or spyder etc, you should satify following requirements.
+
 PyTorch >= 1.1.  
 Python >= 3.6.  
 Other common packages.
